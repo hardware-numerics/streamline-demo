@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streamline Playground</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- Наш главный 3D холст -->
+      <canvas id="scene"></canvas>
+      
+      <!-- Лоадер расчёта сетки -->
+      <div id="loader">
+        <div class="loader-title">Calculating magnetic field on the grid...</div>
+        <div id="loader-percent" class="loader-percentage">0%</div>
+      </div>
+
+      <!-- Меню управления (пока скрыто, запуск в bootstrap) -->
+      <div id="ui-panel" style="display: none;">
+        <div class="panel-title">Select Trap Geomentry</div>
+        <div class="bundle-control-group">
+          <select id="trap-config">
+            <option value="ioffe" selected>Ioffe-Pritchard</option>
+            <option value="yinyang">Broken YinYang (min-B)</option>
+            <option value="mirror">Mirror Machine</option>
+            <option value="cusp">Аnti-Mirror (Cusp)</option>
+            <option value="cloverleaf">Cloverleaf</option>
+            <option value="torsatron">Torsatron</option>
+            <option value="tokamak">Tokamak</option>
+          </select>
+        </div>
+        <div style="margin-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 6px;"></div>    
+       <!--!-->
+        <div class="panel-title">Field Streamlines</div>
+        <div class="bundle-control-group">
+          <div class="bundle-label" style="color: #ff3333;">● Left Streamline Bundle (red)</div>
+          <select id="method-euler">
+            <option value="euler" selected>Euler method  (Fast)</option>
+            <option value="rk4">Runge-Kutta 4 (Accurate)</option>
+          </select>
+        </div>
+        <div class="bundle-control-group">
+          <div class="bundle-label" style="color: #33ff77;">● Right Streamline Bundle (green)</div>
+          <select id="method-rk4">
+            <option value="euler">Euler method (Fast)</option>
+            <option value="rk4" selected>Runge-Kutta 4 (Accurate)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
