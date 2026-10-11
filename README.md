@@ -138,9 +138,9 @@ The deployment script publishes the contents of dist/ to the gh-pages branch.
 
 Before deploying, make sure that:
 
--- The gh-pages package is installed.
--- The base option in vite.config.ts matches the repository's published URL.
--- GitHub Pages is configured to serve the gh-pages branch from the root directory.
+- The gh-pages package is installed.
+- The base option in vite.config.ts matches the repository's published URL.
+- GitHub Pages is configured to serve the gh-pages branch from the root directory.
 
 After deployment, open the GitHub Pages URL and verify that the application loads correctly.
 
@@ -150,14 +150,14 @@ For more information, see the Vite deployment guide and the gh-pages documentati
 
 When experimenting with the project, it is good practice to separate development, testing, and deployment.
 
--- Experiment locally first. Use npm run dev to modify coil geometries, current values, colors, and visualization parameters without affecting the published website.
--- Test your changes. Check the application in the browser and verify that your modifications behave as expected.
--- Build before deploying. Run npm run build to check that the project compiles successfully.
--- Preview the production build. Use npm run preview to inspect the built application before publishing it.
--- Deploy only when ready. Run npm run deploy when you are satisfied with the results. This publishes the contents of dist/ to GitHub Pages.
--- Keep changes manageable. Make small, focused changes so that unexpected behavior is easier to identify and fix.
--- Use version control. Commit working changes regularly with descriptive commit messages. Consider using a separate Git branch for larger experiments.
--- Avoid committing generated files unnecessarily. Follow the repository's .gitignore rules and keep dependencies managed through package.json and package-lock.json.
+- Experiment locally first. Use npm run dev to modify coil geometries, current values, colors, and visualization parameters without affecting the published website.
+- Test your changes. Check the application in the browser and verify that your modifications behave as expected.
+- Build before deploying. Run npm run build to check that the project compiles successfully.
+- Preview the production build. Use npm run preview to inspect the built application before publishing it.
+- Deploy only when ready. Run npm run deploy when you are satisfied with the results. This publishes the contents of dist/ to GitHub Pages.
+- Keep changes manageable. Make small, focused changes so that unexpected behavior is easier to identify and fix.
+- Use version control. Commit working changes regularly with descriptive commit messages. Consider using a separate Git branch for larger experiments.
+- Avoid committing generated files unnecessarily. Follow the repository's .gitignore rules and keep dependencies managed through package.json and package-lock.json.
 
 A recommended workflow is:
 
