@@ -106,8 +106,8 @@ The software is provided for learning, experimentation, and exploratory visualiz
 - [Three.js](https://threejs.org/)
 - Web-based 3D visualization
 
-##Building and Deployment
-###Production Build
+## Building and Deployment
+### Production Build
 
 To build the application for production, run:
 
@@ -146,7 +146,7 @@ After deployment, open the GitHub Pages URL and verify that the application load
 
 For more information, see the Vite deployment guide and the gh-pages documentation.
 
-##Development Best Practices
+## Development Best Practices
 
 When experimenting with the project, it is good practice to separate development, testing, and deployment.
 
