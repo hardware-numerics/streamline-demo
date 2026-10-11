@@ -47,7 +47,7 @@ export class Seed {
     // --------------------------------------------------------
     this.options = {
       stepSize: 0.05,
-      maxSteps: 600,
+      maxSteps: 400,
       minField: 1e-12,
       integrator: this.integrator // Записываем в опции расчета линий
     };

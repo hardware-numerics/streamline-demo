@@ -1,5 +1,5 @@
 
-import './style.css';
+import './demo_style.css';
 
 import * as THREE from 'three';
 
@@ -9,7 +9,9 @@ import {
   makeMirrorOrCusp,
   addFilamentsToScene
 } from './filaments';
-import { makeTorsatron} from './advancedFilaments';
+import { makeCloverleaf,
+  makeTorsatron,
+  makeTokamakDCoils,} from './advancedFilaments';
 
 import { MagneticField } from './field';
 import { FieldGrid } from './fieldGrid';
@@ -73,6 +75,32 @@ renderer.setSize(
   window.innerWidth,
   window.innerHeight
 );
+
+//-----copyright
+
+// 1. Создаем элемент для копирайта
+const copyrightNotice = document.createElement('div');
+
+// 2. Пишем текст на английском с лицензией MIT
+const currentYear = new Date().getFullYear();
+copyrightNotice.innerHTML = `&copy; ${currentYear} NE`;
+
+// 3. Задаем стили прямо из кода, чтобы надпись была видна поверх canvas
+copyrightNotice.style.position = 'fixed';
+copyrightNotice.style.bottom = '40px';
+copyrightNotice.style.left = '20%';
+copyrightNotice.style.transform = 'translateX(-50%)';
+copyrightNotice.style.zIndex = '999999'; // Поднимаем на самый верхний слой
+copyrightNotice.style.fontFamily = 'system-ui, -apple-system, sans-serif';
+copyrightNotice.style.fontSize = '13px';
+copyrightNotice.style.color = 'rgba(255, 255, 255, 0.8)'; // Белый полупрозрачный текст
+copyrightNotice.style.background = 'rgba(0, 0, 0, 0.6)'; // Темная подложка, чтобы читалось на любом фоне
+copyrightNotice.style.padding = '6px 14px';
+copyrightNotice.style.borderRadius = '20px';
+copyrightNotice.style.pointerEvents = 'none'; // Чтобы клики сквозь текст уходили в canvas
+
+// 4. Добавляем копирайт на страницу
+document.body.appendChild(copyrightNotice);
 
 
 // ============================================================
@@ -146,7 +174,7 @@ const CAMERA_RADIUS = 9;
 
 const CAMERA_HEIGHT = 5;
 
-const CAMERA_SPEED = 0.003;
+const CAMERA_SPEED = 0.005;
 
 
 // ============================================================
@@ -281,37 +309,57 @@ function removeFilaments() {
 // ============================================================
 
 function createFilaments(type: string) {
-
+  
   if (type === 'yinyang') {
 
     return makeYinYang({
-      numPoints: 32
-    });
+      numPoints: 32,
+        colors: [
+          0x00bcd4,
+          0xffa726,
+        ],
+      });
 
   }
 
-
   if (type === 'mirror') {
 
-    return makeMirrorOrCusp(false);
+    return makeMirrorOrCusp(false, {colors: [0xffc0cb, 0xffc0cb]});
 
   }
 
 
   if (type === 'cusp') {
 
-    return makeMirrorOrCusp(true);
+    return makeMirrorOrCusp(true, {colors: [0xffc0cb, 0x557799]});
 
   }
 
   if (type === 'torsatron') {
 
-    return makeTorsatron(true);
+    return makeTorsatron({
+      colors: [
+        0xff5533,
+        0x557799,
+        0xffc0cb,
+        0xffc0cb,
+      ],
+    });;
 
   }
 
-
-  return makeIoffePritchard();
+  return makeIoffePritchard({
+    barColors: [
+      0xff5533,
+      0x557799,
+      0xff5533,
+      0x557799,
+    ],
+    ringColors: [
+      0xffc0cb,
+      0xffc0cb,
+    ],
+  });;
 }
 
 
