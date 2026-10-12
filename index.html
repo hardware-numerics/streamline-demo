@@ -2,54 +2,129 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Streamline Playground</title>
-    <script type="module" crossorigin src="/streamline-demo/assets/index-CnMTyajJ.js"></script>
-    <link rel="stylesheet" crossorigin href="/streamline-demo/assets/index-CENRLr2v.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#05070c" />
+    <style>#app{visibility:hidden}</style>
+    <meta name="description" content="Interactive 3D magnetic confinement and magnetic field streamline playground." />
+    <title>Field Lab — Magnetic Confinement</title>
+    <script type="module" crossorigin src="/streamline-demo/assets/index-BV2XAVOW.js"></script>
+    <link rel="stylesheet" crossorigin href="/streamline-demo/assets/index-CeXir3Lo.css">
   </head>
 
   <body>
     <div id="app">
-      <!-- Наш главный 3D холст -->
-      <canvas id="scene"></canvas>
-      
-      <!-- Лоадер расчёта сетки -->
-      <div id="loader">
-        <div class="loader-title">Calculating magnetic field on the grid...</div>
+      <canvas id="scene" aria-label="Interactive 3D magnetic field visualization"></canvas>
+
+      <header class="scene-hud">
+        <div class="brand">
+          <span class="brand-mark">∿</span>
+          <div>
+            <div class="brand-name">FIELD LAB</div>
+            <div class="brand-subtitle">MAGNETIC CONFINEMENT</div>
+          </div>
+        </div>
+
+        <div id="demo-title" aria-live="polite">Ioffe–Pritchard</div>
+
+        <div class="hud-actions">
+          <button id="demo-toggle" class="ui-button demo-button"
+            type="button" aria-pressed="false">
+            <span class="button-icon">▶</span>
+            <span class="demo-button-label">Explore demo</span>
+          </button>
+
+          <button id="mobile-controls-toggle" class="ui-button mobile-only"
+            type="button" aria-expanded="false" aria-controls="ui-panel">
+            <span class="button-icon">☷</span>
+            Controls
+          </button>
+        </div>
+      </header>
+
+      <div class="scene-hint">
+        DRAG TO ROTATE <span>·</span> PINCH TO ZOOM
+      </div>
+
+      <div id="loader" role="status" aria-live="polite">
+        <div class="loader-spinner"></div>
+        <div class="loader-title">Calculating magnetic field</div>
         <div id="loader-percent" class="loader-percentage">0%</div>
       </div>
 
-      <!-- Меню управления (пока скрыто, запуск в bootstrap) -->
-      <div id="ui-panel" style="display: none;">
-        <div class="panel-title">Select Trap Geomentry</div>
-        <div class="bundle-control-group">
-          <select id="trap-config">
-            <option value="ioffe" selected>Ioffe-Pritchard</option>
-            <option value="yinyang">Broken YinYang (min-B)</option>
-            <option value="mirror">Mirror Machine</option>
-            <option value="cusp">Аnti-Mirror (Cusp)</option>
-            <option value="cloverleaf">Cloverleaf</option>
-            <option value="torsatron">Torsatron</option>
-            <option value="tokamak">Tokamak</option>
-          </select>
+      <div id="panel-backdrop"></div>
+
+      <section id="ui-panel" aria-label="Visualization controls">
+        <div class="mobile-panel-header">
+          <div>
+            <div class="panel-eyebrow">CONFIGURATION</div>
+            <div class="mobile-panel-title">Experiment setup</div>
+          </div>
+
+          <button id="mobile-controls-close" class="icon-button"
+            type="button" aria-label="Close controls">✕</button>
         </div>
-        <div style="margin-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 6px;"></div>    
-       <!--!-->
-        <div class="panel-title">Field Streamlines</div>
-        <div class="bundle-control-group">
-          <div class="bundle-label" style="color: #ff3333;">● Left Streamline Bundle (red)</div>
-          <select id="method-euler">
-            <option value="euler" selected>Euler method  (Fast)</option>
-            <option value="rk4">Runge-Kutta 4 (Accurate)</option>
-          </select>
+
+        <div class="panel-section">
+          <div class="panel-title">
+            <span class="section-number">01</span>
+            Magnetic trap
+          </div>
+
+          <div class="bundle-control-group">
+            <label class="bundle-label" for="trap-config">Geometry</label>
+
+            <select id="trap-config">
+              <option value="ioffe" selected>Ioffe–Pritchard</option>
+              <option value="yinyang">Yin–Yang (min-B)</option>
+              <option value="mirror">Mirror machine</option>
+              <option value="cusp">Anti-mirror (Cusp)</option>
+              <option value="cloverleaf">Cloverleaf</option>
+              <option value="torsatron">Torsatron</option>
+              <option value="tokamak">Tokamak</option>
+            </select>
+          </div>
         </div>
-        <div class="bundle-control-group">
-          <div class="bundle-label" style="color: #33ff77;">● Right Streamline Bundle (green)</div>
-          <select id="method-rk4">
-            <option value="euler">Euler method (Fast)</option>
-            <option value="rk4" selected>Runge-Kutta 4 (Accurate)</option>
-          </select>
+
+        <div class="panel-section">
+          <div class="panel-title">
+            <span class="section-number">02</span>
+            Field streamlines
+          </div>
+
+          <div class="bundle-control-group">
+            <label class="bundle-label bundle-label-red" for="method-euler">
+              <span class="status-dot"></span>
+              Left bundle <span class="method-color">RED</span>
+            </label>
+
+            <select id="method-euler">
+              <option value="euler" selected>Euler · Fast</option>
+              <option value="rk4">Runge–Kutta 4 · Accurate</option>
+            </select>
+          </div>
+
+          <div class="bundle-control-group">
+            <label class="bundle-label bundle-label-green" for="method-rk4">
+              <span class="status-dot"></span>
+              Right bundle <span class="method-color">GREEN</span>
+            </label>
+
+            <select id="method-rk4">
+              <option value="euler">Euler · Fast</option>
+              <option value="rk4" selected>Runge–Kutta 4 · Accurate</option>
+            </select>
+          </div>
         </div>
+
+        <div class="panel-footer">
+          <span class="live-dot"></span>
+          <span>INTERACTIVE FIELD MODEL</span>
+        </div>
+      </section>
+
+      <div class="mobile-bottom-hint">
+        <span class="live-dot"></span>
+        Drag to explore
       </div>
     </div>
 
