@@ -1,5 +1,3 @@
-//import * as THREE from 'three'; import type { Filament } from './filaments';
-
 import * as THREE from 'three';
 import {
   type Filament,

@@ -64,6 +64,15 @@ $$
 
 Numerically, the field can be evaluated by discretizing each filament into short line segments and summing their contributions.
 
+In order to visualize the magnetic field we make line tracing by solving the equation
+
+$$
+\frac{d\vec r}{ds} = \frac{\vec B(\vec r)}{|\vec B|}
+$$
+
+In order to accelerate streamlines calculation the field is first calculated on the grid $32\times 32 \times 32$ and then interpolated linearly at particles positions. 
+Initial seeds for streamlines are arranged on the spheres of small radius according the Fibonacchi ordering. 
+
 ### Scope of the Current Implementation
 
 The current 3D visualization focuses on coil geometry, spatial arrangement, and visual identification of individual filaments.

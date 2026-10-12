@@ -5,6 +5,7 @@ import * as THREE from 'three';
 
 import {
   makeIoffePritchard,
+  makeMultipoleIoffePritchard,
   makeYinYang,
   makeMirrorOrCusp,
   addFilamentsToScene
@@ -348,6 +349,27 @@ function createFilaments(type: string) {
 
   }
 
+  return makeMultipoleIoffePritchard({
+    barCount: 8,
+  
+    barColors: [
+      0xff5533,
+      0x557799,
+      0xff5533,
+      0x557799,
+      0xff5533,
+      0x557799,
+      0xff5533,
+      0x557799,
+    ],
+  
+    ringColors: [
+      0xffc0cb,
+      0xffc0cb,
+    ],
+  });
+
+  /*
   return makeIoffePritchard({
     barColors: [
       0xff5533,
@@ -359,7 +381,8 @@ function createFilaments(type: string) {
       0xffc0cb,
       0xffc0cb,
     ],
-  });;
+  });
+  */
 }
 
 
