@@ -70,7 +70,7 @@ $$
 \frac{d\vec r}{ds} = \frac{\vec B(\vec r)}{|\vec B|}
 $$
 
-using the Euler or Runge-Kutta 4th methods. 
+using the Euler or Runge-Kutta 4th methods. This equation is integrated along streamline parametrized over arclength $s$ parameter.
 
 In order to accelerate calculation of streamlines the field is first calculated on the grid $32\times 32 \times 32$ and then interpolated linearly at particles positions. 
 Initial seeds for streamlines are arranged on the spheres of small radius according the Fibonacchi ordering. 
