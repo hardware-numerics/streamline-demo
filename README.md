@@ -107,9 +107,11 @@ In particular:
 - Model parameters are not necessarily expressed in physical units.
 - A visual representation of coils does not establish the accuracy of the resulting magnetic field.
 - The visualization alone does not demonstrate stable plasma confinement or predict experimental performance.
-- Quantitative results require appropriate physical units, numerical methods, validation, and, where relevant, additional plasma physics models.
+- Quantitative results require appropriate physical units,  validation, and, where relevant, additional plasma physics models.
 
-The software is provided for learning, experimentation, and exploratory visualization. It should not be used as the sole basis for engineering decisions, experimental design, safety-critical applications, or quantitative scientific conclusions.
+The software is provided for learning, experimentation, and exploratory visualization. 
+It should not be used as the sole basis for engineering decisions, experimental design, safety-critical applications, 
+or quantitative scientific conclusions. But for qualitative unerstanding what is going on, this package is OK :)
 
 ## Technologies
 
